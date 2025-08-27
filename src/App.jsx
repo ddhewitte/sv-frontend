@@ -7,6 +7,7 @@ import Layout from './templates/Layout'
 import Home from './pages/Home'
 import Add from './pages/Add'
 import Edit from './pages/Edit'
+import Blog from './pages/Blog'
 
 function App() {
    return (
@@ -15,6 +16,7 @@ function App() {
         <Route index element={<Home />}></Route>
         <Route path="/add" element={<Add />}></Route>
         <Route path="/edit/:id" element={<Edit /> }></Route>
+        <Route path="/blog" element={<Blog/>} />
       </Route>
     </Routes>
   )
