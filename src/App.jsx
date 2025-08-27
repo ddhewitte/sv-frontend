@@ -6,6 +6,7 @@ import './App.css'
 import Layout from './templates/Layout'
 import Home from './pages/Home'
 import Add from './pages/Add'
+import Edit from './pages/Edit'
 
 function App() {
    return (
