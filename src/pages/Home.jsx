@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Eye, Edit2, Trash2 } from "lucide-react";
+import { Edit2, Trash2 } from "lucide-react";
 import axios from "axios";
 
 export default function Home() {
@@ -19,6 +19,18 @@ export default function Home() {
 
     fetchArticles();
   }, []);
+
+  //Delete
+  const onDelete = async (id) => {
+    if (!confirm("Yakin hapus artikel ini?")) return;
+
+    try {
+      await axios.delete(`${URL_API}/article/${id}`);
+      setArticles((prev) => prev.filter((a) => a.id !== id));
+    } catch (err) {
+      console.error("Error deleting:", err);
+    }
+  };
 
   //render table
   const renderTable = (status) => {
@@ -47,7 +59,10 @@ export default function Home() {
                 <button className="p-1 hover:text-green-600">
                   <Edit2 size={18} />
                 </button>
-                <button className="p-1 hover:text-red-600">
+                <button 
+                    className="p-1 hover:text-red-600"
+                    onClick={() => onDelete(article.id)}
+                >
                   <Trash2 size={18} />
                 </button>
               </td>
