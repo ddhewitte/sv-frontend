@@ -79,6 +79,10 @@ export default function Home() {
   };
 
   return (
+    <>
+    <div className="mt-3 text-right p-8">
+        <a href={`/add`}>Add New Article </a> | <a href="">🚀 Preview Blog </a> 
+    </div>
 
     <section className="flex flex-row flex-wrap w-[800px] m-8 text-black">
     
@@ -134,5 +138,6 @@ export default function Home() {
         {renderTable("trash")}
       </div>
     </section>
+    </>
   );
 }
