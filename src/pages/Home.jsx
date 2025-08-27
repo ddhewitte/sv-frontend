@@ -4,12 +4,13 @@ import axios from "axios";
 
 export default function Home() {
 
+  const URL_API = import.meta.env.VITE_API_ENDPOINT;
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/article");
+        const res = await axios.get(`${URL_API}/article`);
         setArticles(res.data);
       } catch (err) {
         console.error("Error fetching articles:", err);
