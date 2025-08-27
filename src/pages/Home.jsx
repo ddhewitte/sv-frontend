@@ -26,8 +26,13 @@ export default function Home() {
   const onDelete = async (id) => {
     if (!confirm("Yakin hapus artikel ini?")) return;
 
+    const getArticle = articles.find((a) => a.id === id);
+
     try {
-      await axios.delete(`${URL_API}/article/${id}`);
+      await axios.put(`${URL_API}/article/${id}`, {
+        ...getArticle,
+        status : "thrash"
+      });
       setArticles((prev) => prev.filter((a) => a.id !== id));
     } catch (err) {
       console.error("Error deleting:", err);
@@ -81,7 +86,7 @@ export default function Home() {
   return (
     <>
     <div className="mt-3 text-right p-8">
-        <a href={`/add`}>Add New Article </a> | <a href="">🚀 Preview Blog </a> 
+        <a href={`/add`}>Add New Article </a> | <a href={`/blog`}>🚀 Preview Blog </a> 
     </div>
 
     <section className="flex flex-row flex-wrap w-[800px] m-8 text-black">
@@ -135,7 +140,7 @@ export default function Home() {
         {renderTable("draft")}
       </div>
       <div className="bg-gray-200 hidden peer-checked/tab-three:block p-4 w-full">
-        {renderTable("trash")}
+        {renderTable("thrash")}
       </div>
     </section>
     </>
