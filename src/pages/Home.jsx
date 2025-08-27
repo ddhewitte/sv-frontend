@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Edit2, Trash2 } from "lucide-react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
 
   const URL_API = import.meta.env.VITE_API_ENDPOINT;
   const [articles, setArticles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -56,7 +58,10 @@ export default function Home() {
                 {article.category}
               </td>
               <td className="p-2 border border-gray-300 flex gap-2">
-                <button className="p-1 hover:text-green-600">
+                <button 
+                    className="p-1 hover:text-green-600"
+                    onClick={() => navigate(`/edit/${article.id}`)}
+                >
                   <Edit2 size={18} />
                 </button>
                 <button 
